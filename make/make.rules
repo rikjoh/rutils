@@ -1,0 +1,8 @@
+
+
+-include make.variables
+
+$(EBIN)/%.beam: %.erl
+	@[ ! -d $(EBIN) ] && echo "creating $(EBIN)" && mkdir $(EBIN)
+	$(ERLC) $(ERLC_INCLUDES) -o $(EBIN) $<
+
