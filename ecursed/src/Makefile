@@ -1,25 +1,21 @@
 
 # 
+TOP=$(shell git rev-parse --show-toplevel)
+-include $(TOP)/make/make.variables
 
+
+EBIN=../ebin
 
 MODULES = ecursed
 
 HRL_INCLUDE_DIRS = ../include
 
-EBIN=../ebin
 
 
-
-TARGETS=$(EBIN) $(MODULES:%=$(EBIN)/%.beam)
-
-
-ERLC_INCLUDES=$(HRL_INCLUDE_DIRS:%=-I %)
+TARGETS=$(MODULES:%=$(EBIN)/%.beam)
 
 
 all: $(TARGETS)
 
-$(EBIN): 
-	mkdir $(EBIN)
+include $(TOP)/make/make.rules
 
-$(EBIN)/%.beam: %.erl
-	erlc $(ERLC_INCLUDES) -o $(EBIN) $<
