@@ -3,3 +3,5 @@
 ERL=erl
 ERLC=erlc
 
+ERLC_INCLUDES=$(HRL_INCLUDE_DIRS:%=-I %)
+

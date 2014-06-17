@@ -2,7 +2,14 @@
 
 -include make.variables
 
+.PHONY: clean
+
 $(EBIN)/%.beam: %.erl
-	@[ ! -d $(EBIN) ] && echo "creating $(EBIN)" && mkdir $(EBIN)
+	@[ ! -d $(EBIN) ] && echo "creating $(EBIN)" && mkdir $(EBIN) || :
 	$(ERLC) $(ERLC_INCLUDES) -o $(EBIN) $<
+
+clean::
+	rm -f $(EBIN)/*.beam
+	rmdir $(EBIN)
+	rm -f *~
 
